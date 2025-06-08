@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package topology;
+
+option go_package = "routing.topology.v1;topologyv1";
+
+service Topology {
+  rpc Get (TopologyRequest) returns (TopologyResponse);
+}
+
+message TopologyRequest {
+  string checksum = 1;
+}
+
+message TopologyResponse {
+  string checksum = 1;
+  repeated Node nodes = 2;
+  repeated Segment segments = 3;
+}
+
+message Node {
+  int64 node_id = 1;
+  string type = 2;
+  optional int64 destination_id = 3;
+}
+
+message Segment {
+  int64 segment_id = 1;
+  int64 start_node = 2;
+  int64 end_node = 3;
+  int64 travel_time = 4;
+}
