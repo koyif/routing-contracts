@@ -5,7 +5,7 @@ package topology;
 option go_package = "routing.topology.v1;topologyv1";
 
 service Topology {
-  rpc Get (TopologyRequest) returns (TopologyResponse);
+  rpc Topology (TopologyRequest) returns (TopologyResponse);
 }
 
 message TopologyRequest {
