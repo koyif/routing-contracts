@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Topology_Get_FullMethodName = "/topology.Topology/Get"
+	Topology_Topology_FullMethodName = "/topology.Topology/Topology"
 )
 
 // TopologyClient is the client API for Topology service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TopologyClient interface {
-	Get(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error)
+	Topology(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error)
 }
 
 type topologyClient struct {
@@ -37,10 +37,10 @@ func NewTopologyClient(cc grpc.ClientConnInterface) TopologyClient {
 	return &topologyClient{cc}
 }
 
-func (c *topologyClient) Get(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error) {
+func (c *topologyClient) Topology(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TopologyResponse)
-	err := c.cc.Invoke(ctx, Topology_Get_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Topology_Topology_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *topologyClient) Get(ctx context.Context, in *TopologyRequest, opts ...g
 // All implementations must embed UnimplementedTopologyServer
 // for forward compatibility.
 type TopologyServer interface {
-	Get(context.Context, *TopologyRequest) (*TopologyResponse, error)
+	Topology(context.Context, *TopologyRequest) (*TopologyResponse, error)
 	mustEmbedUnimplementedTopologyServer()
 }
 
@@ -62,8 +62,8 @@ type TopologyServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTopologyServer struct{}
 
-func (UnimplementedTopologyServer) Get(context.Context, *TopologyRequest) (*TopologyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+func (UnimplementedTopologyServer) Topology(context.Context, *TopologyRequest) (*TopologyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Topology not implemented")
 }
 func (UnimplementedTopologyServer) mustEmbedUnimplementedTopologyServer() {}
 func (UnimplementedTopologyServer) testEmbeddedByValue()                  {}
@@ -86,20 +86,20 @@ func RegisterTopologyServer(s grpc.ServiceRegistrar, srv TopologyServer) {
 	s.RegisterService(&Topology_ServiceDesc, srv)
 }
 
-func _Topology_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Topology_Topology_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TopologyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TopologyServer).Get(ctx, in)
+		return srv.(TopologyServer).Topology(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Topology_Get_FullMethodName,
+		FullMethod: Topology_Topology_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TopologyServer).Get(ctx, req.(*TopologyRequest))
+		return srv.(TopologyServer).Topology(ctx, req.(*TopologyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var Topology_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TopologyServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _Topology_Get_Handler,
+			MethodName: "Topology",
+			Handler:    _Topology_Topology_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

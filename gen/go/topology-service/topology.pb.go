@@ -276,9 +276,9 @@ const file_topology_service_topology_proto_rawDesc = "" +
 	"start_node\x18\x02 \x01(\x03R\tstartNode\x12\x19\n" +
 	"\bend_node\x18\x03 \x01(\x03R\aendNode\x12\x1f\n" +
 	"\vtravel_time\x18\x04 \x01(\x03R\n" +
-	"travelTime2H\n" +
-	"\bTopology\x12<\n" +
-	"\x03Get\x12\x19.topology.TopologyRequest\x1a\x1a.topology.TopologyResponseB Z\x1erouting.topology.v1;topologyv1b\x06proto3"
+	"travelTime2M\n" +
+	"\bTopology\x12A\n" +
+	"\bTopology\x12\x19.topology.TopologyRequest\x1a\x1a.topology.TopologyResponseB Z\x1erouting.topology.v1;topologyv1b\x06proto3"
 
 var (
 	file_topology_service_topology_proto_rawDescOnce sync.Once
@@ -302,8 +302,8 @@ var file_topology_service_topology_proto_goTypes = []any{
 var file_topology_service_topology_proto_depIdxs = []int32{
 	2, // 0: topology.TopologyResponse.nodes:type_name -> topology.Node
 	3, // 1: topology.TopologyResponse.segments:type_name -> topology.Segment
-	0, // 2: topology.Topology.Get:input_type -> topology.TopologyRequest
-	1, // 3: topology.Topology.Get:output_type -> topology.TopologyResponse
+	0, // 2: topology.Topology.Topology:input_type -> topology.TopologyRequest
+	1, // 3: topology.Topology.Topology:output_type -> topology.TopologyResponse
 	3, // [3:4] is the sub-list for method output_type
 	2, // [2:3] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
