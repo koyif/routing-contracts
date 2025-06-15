@@ -127,9 +127,9 @@ func (x *TopologyResponse) GetSegments() []*Segment {
 
 type Node struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	NodeId        int64                  `protobuf:"varint,1,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
+	NodeId        int32                  `protobuf:"varint,1,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
 	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-	DestinationId *int64                 `protobuf:"varint,3,opt,name=destination_id,json=destinationId,proto3,oneof" json:"destination_id,omitempty"`
+	DestinationId int32                  `protobuf:"varint,3,opt,name=destination_id,json=destinationId,proto3" json:"destination_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -164,7 +164,7 @@ func (*Node) Descriptor() ([]byte, []int) {
 	return file_topologyservice_topology_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Node) GetNodeId() int64 {
+func (x *Node) GetNodeId() int32 {
 	if x != nil {
 		return x.NodeId
 	}
@@ -178,19 +178,19 @@ func (x *Node) GetType() string {
 	return ""
 }
 
-func (x *Node) GetDestinationId() int64 {
-	if x != nil && x.DestinationId != nil {
-		return *x.DestinationId
+func (x *Node) GetDestinationId() int32 {
+	if x != nil {
+		return x.DestinationId
 	}
 	return 0
 }
 
 type Segment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SegmentId     int64                  `protobuf:"varint,1,opt,name=segment_id,json=segmentId,proto3" json:"segment_id,omitempty"`
-	StartNode     int64                  `protobuf:"varint,2,opt,name=start_node,json=startNode,proto3" json:"start_node,omitempty"`
-	EndNode       int64                  `protobuf:"varint,3,opt,name=end_node,json=endNode,proto3" json:"end_node,omitempty"`
-	TravelTime    int64                  `protobuf:"varint,4,opt,name=travel_time,json=travelTime,proto3" json:"travel_time,omitempty"`
+	SegmentId     int32                  `protobuf:"varint,1,opt,name=segment_id,json=segmentId,proto3" json:"segment_id,omitempty"`
+	StartNode     int32                  `protobuf:"varint,2,opt,name=start_node,json=startNode,proto3" json:"start_node,omitempty"`
+	EndNode       int32                  `protobuf:"varint,3,opt,name=end_node,json=endNode,proto3" json:"end_node,omitempty"`
+	TravelTime    int32                  `protobuf:"varint,4,opt,name=travel_time,json=travelTime,proto3" json:"travel_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -225,28 +225,28 @@ func (*Segment) Descriptor() ([]byte, []int) {
 	return file_topologyservice_topology_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Segment) GetSegmentId() int64 {
+func (x *Segment) GetSegmentId() int32 {
 	if x != nil {
 		return x.SegmentId
 	}
 	return 0
 }
 
-func (x *Segment) GetStartNode() int64 {
+func (x *Segment) GetStartNode() int32 {
 	if x != nil {
 		return x.StartNode
 	}
 	return 0
 }
 
-func (x *Segment) GetEndNode() int64 {
+func (x *Segment) GetEndNode() int32 {
 	if x != nil {
 		return x.EndNode
 	}
 	return 0
 }
 
-func (x *Segment) GetTravelTime() int64 {
+func (x *Segment) GetTravelTime() int32 {
 	if x != nil {
 		return x.TravelTime
 	}
@@ -263,19 +263,18 @@ const file_topologyservice_topology_proto_rawDesc = "" +
 	"\x10TopologyResponse\x12\x1a\n" +
 	"\bchecksum\x18\x01 \x01(\tR\bchecksum\x12$\n" +
 	"\x05nodes\x18\x02 \x03(\v2\x0e.topology.NodeR\x05nodes\x12-\n" +
-	"\bsegments\x18\x03 \x03(\v2\x11.topology.SegmentR\bsegments\"r\n" +
+	"\bsegments\x18\x03 \x03(\v2\x11.topology.SegmentR\bsegments\"Z\n" +
 	"\x04Node\x12\x17\n" +
-	"\anode_id\x18\x01 \x01(\x03R\x06nodeId\x12\x12\n" +
-	"\x04type\x18\x02 \x01(\tR\x04type\x12*\n" +
-	"\x0edestination_id\x18\x03 \x01(\x03H\x00R\rdestinationId\x88\x01\x01B\x11\n" +
-	"\x0f_destination_id\"\x83\x01\n" +
+	"\anode_id\x18\x01 \x01(\x05R\x06nodeId\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12%\n" +
+	"\x0edestination_id\x18\x03 \x01(\x05R\rdestinationId\"\x83\x01\n" +
 	"\aSegment\x12\x1d\n" +
 	"\n" +
-	"segment_id\x18\x01 \x01(\x03R\tsegmentId\x12\x1d\n" +
+	"segment_id\x18\x01 \x01(\x05R\tsegmentId\x12\x1d\n" +
 	"\n" +
-	"start_node\x18\x02 \x01(\x03R\tstartNode\x12\x19\n" +
-	"\bend_node\x18\x03 \x01(\x03R\aendNode\x12\x1f\n" +
-	"\vtravel_time\x18\x04 \x01(\x03R\n" +
+	"start_node\x18\x02 \x01(\x05R\tstartNode\x12\x19\n" +
+	"\bend_node\x18\x03 \x01(\x05R\aendNode\x12\x1f\n" +
+	"\vtravel_time\x18\x04 \x01(\x05R\n" +
 	"travelTime2M\n" +
 	"\bTopology\x12A\n" +
 	"\bTopology\x12\x19.topology.TopologyRequest\x1a\x1a.topology.TopologyResponseB Z\x1erouting.topology.v1;topologyv1b\x06proto3"
@@ -316,7 +315,6 @@ func file_topologyservice_topology_proto_init() {
 	if File_topologyservice_topology_proto != nil {
 		return
 	}
-	file_topologyservice_topology_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
